@@ -1,0 +1,59 @@
+/* =============
+    DEFAULTS
+============== */
+
+:root {
+  /* variables */
+  --white: #ffffff;
+  --grey-50: #f4f4f4;
+  --grey-100: #e9e9e9;
+  --grey-150: #757575;
+  --grey-200: #3a3a3a;
+  --grey-250: #2d2d2d;
+  --grey-300: #1f1f1f;
+  --grey-350: #050505;
+  --error: #ff5252;
+  --brand: #a445ed;
+  --inter: "Inter", serif;
+  --lora: "Lora", serif;
+  --inconsolata: "Inconsolata", serif;
+  --heading-l: 700 4rem;
+  --heading-m: 400 1.5rem;
+  --heading-s: 400 1.25rem;
+  --body-m: 400 1.125rem/1.5rem;
+  --body-s: 400 0.875rem;
+
+  /* Allows body to grow as needed, unrestricted */
+  height: 100%;
+
+  /*Enables support for the light-dark() function, so we can specify colors for things for both light and dark theme context.*/
+  color-scheme: light dark;
+}
+
+* {
+  box-sizing: border-box;
+  /* I like to space things using only bottom margin. Feels cleaner than doing a mix of bottom/top.*/
+  margin-top: 0;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font: var(--body-m) var(--inter);
+}
+
+/* =============
+    TYPOGROPHY
+============== */
+
+/* =============
+    LAYOUT
+============== */
+
+.container {
+}
+
+.container-flex {
+  display: flex;
+  flex-direction: column;
+}

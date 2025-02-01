@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary app</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <header class="settings">
+            <h1 class="logo">
+                <img src="./starter-code/assets/images/logo.svg" alt="The Dictionary app logo" class="logo-image">
+            </h1>
+            <div class="font-picker">
+                <p class="font"></p>
+                <input type="checkbox" checkbox="">
+                <img src="./starter-code/assets/images/icon-arrow-down.svg" alt="" class="dropdown-arrow">
+            </div>
+            <ul class="font-list">
+                <li class="font sans">sans serif</li>
+                <li class="font serif">serif</li>
+                <li class="font mono">mono</li>
+            </ul>
+        </header>
+        <form action="" class="search-form">
+            <input type="text" class="search-input" placeholder="Search for any word...">
+            <img src="./starter-code/assets/images/icon-search.svg" alt="Search icon" class="search-icon">
+        </form>
+        <div class="word-info">
+            <div class="searched-word-cont">
+                <h2 class="searched-word"></h2>
+                <p class="searched-word-phonetic"></p>
+                <div class="searched-word-audio">
+                    <img src="./starter-code/assets/images/icon-play.svg" alt="play arrow" class="play-arrow">
+                </div>
+            </div>
+        </div>
+        <section class="word-category-cont">
+            <h2 class="word-category">noun</h2>
+            <h3 class="meaning-lis-title">meaning</h3>
+            <ul class="meaning-list">
+                <li class="meaning"></li>
+                <li class="meaning"></li>
+                <li class="meaning"></li>
+            </ul>
+            <h3 class="synonym-list-title"></h3>
+            <ul class="synonyms-list">
+                <li class="synonym"></li>
+            </ul>
+        </section>
+        <section class="word-category-cont">
+            <h2 class="word-category">verb</h2>
+            <h3 class="meaning-lis-title">meaning</h3>
+            <ul class="meaning-list">
+                <li class="meaning"></li>
+                <li class="meaning"></li>
+                <li class="meaning"></li>
+            </ul>
+            <p class="example-sentence"></p>
+        </section>
+        <h2 class="source-list-title"></h2>
+        <ul class="source-list">
+            <li class="source"></li>
+        </ul>
+    </main>
+</body>
+</html>
