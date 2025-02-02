@@ -1,24 +1,27 @@
 const audioContext = new AudioContext();
 const API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/"
+const MAIN = document.querySelector('main')
 const SEARCH_FORM = document.querySelector('form')
 const SEARCH_INPUT = document.querySelector('.search-input')
 const SEARCHED_WORD = document.querySelector('.searched-word')
 const SEARCHED_WORD_PHONETIC = document.querySelector('.searched-word-phonetic')
 const SEARCHED_WORD_AUDIO = document.querySelector('.searched-word-audio')
+const SOURCE_LIST_TITLE = document.querySelector('.source-list-title')
+const SOURCE_LIST = document.querySelector('.source-list')
 const AUDIO = document.createElement("audio")
-const PRONUNCIATION_AUDIO = document.querySelector('.pronunciation-audio')
-const NOUN_MEANING_LIST = document.querySelector('.noun')
-const SYNONYMS_LIST = document.querySelector('.synonyms-list')
-const VERB_MEANING_LIST = document.querySelector('.verbs')
-const EXAMPLE_SENTENCE = document.querySelector('.example_sentence')
-const MAIN = document.querySelector('main')
+
+
 
 function onSubmitSearchHandler(e){
    
     fetch(API_URL + SEARCH_INPUT.value)
         .then(res => res.json())
         .then(json => {
-            AUDIO.setAttribute("src", json[0].phonetics[0].audio)
+            // console.log(json[0].sourceUrls[0])
+            AUDIO.setAttribute("src", json[0].phonetics.filter(obj => {
+                return obj.audio && obj.audio
+            })[0].audio)
+            
             AUDIO.setAttribute("crossorigin", true)
             const track = audioContext.createMediaElementSource(AUDIO);
             track.connect(audioContext.destination);
@@ -27,7 +30,7 @@ function onSubmitSearchHandler(e){
             SEARCHED_WORD_PHONETIC.innerText = json[0].phonetic
             SEARCHED_WORD_AUDIO.appendChild(AUDIO) 
             json[0].meanings.forEach(meaning => {
-                console.log(meaning)
+                // console.log(meaning)
                 const DEFINITION_CONT = document.createElement('section')
                 DEFINITION_CONT.setAttribute('class', 'definition-cont')
                 
@@ -47,7 +50,7 @@ function onSubmitSearchHandler(e){
                     MEANING_LIST_ITEM.appendChild(document.createTextNode(defObj.definition))
 
                     if (defObj.example) {
-                        const MEANING_LIST_ITEM_EXAMPLE = document.createElement('p')
+                        const MEANING_LIST_ITEM_EXAMPLE = document.createElement('span')
                         MEANING_LIST_ITEM_EXAMPLE.setAttribute('class', 'meaning-list-item-example')
                         MEANING_LIST_ITEM_EXAMPLE.appendChild(document.createTextNode(defObj.example))
 
@@ -77,27 +80,13 @@ function onSubmitSearchHandler(e){
 
                      DEFINITION_CONT.append(SYNONYM_LIST_TITLE, SYNONYM_LIST)
                 }
-                
-               
-                MAIN.appendChild(DEFINITION_CONT)
+            
+                MAIN.insertBefore(DEFINITION_CONT, SOURCE_LIST_TITLE)
             })
             
-            // json[0].meanings[0].synonyms.forEach(synonym => {
-            //     const MEANING_LIST_ITEM = document.createElement('li')
-            //     MEANING_LIST_ITEM.setAttribute('class', 'synonym')
-            //     MEANING_LIST_ITEM.appendChild(document.createTextNode(synonym))
-
-            //     SYNONYMS_LIST.appendChild(MEANING_LIST_ITEM)
-            // })
-
-            // json[0].meanings[0].synonyms.forEach(synonym => {
-            //     const MEANING_LIST_ITEM = document.createElement('li')
-            //     MEANING_LIST_ITEM.setAttribute('class', 'synonym')
-            //     MEANING_LIST_ITEM.appendChild(document.createTextNode(synonym))
-
-            //     SYNONYMS_LIST.appendChild(MEANING_LIST_ITEM)
-            // })
-            
+            const SOURCE = document.createElement("li")
+            SOURCE.appendChild(document.createTextNode(json[0].sourceUrls[0]))
+            SOURCE_LIST.appendChild(SOURCE)
         })
     e.preventDefault()
 }
