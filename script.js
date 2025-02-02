@@ -21,16 +21,26 @@ function onSubmitSearchHandler(e){
             AUDIO.setAttribute("crossorigin", true)
             const track = audioContext.createMediaElementSource(AUDIO);
             track.connect(audioContext.destination);
-            console.log(json[0].phonetics[0].audio)
+            // console.log(json[0].meanings[0].definitions)
             SEARCHED_WORD.innerText = json[0].word
             SEARCHED_WORD_PHONETIC.innerText = json[0].phonetic
             SEARCHED_WORD_AUDIO.appendChild(AUDIO) 
+            json[0].meanings[0].definitions.forEach(defObj => {
+                // console.log(defObj.definition)
+                const MEANING_LIST_ITEM = document.createElement('li')
+                MEANING_LIST_ITEM.setAttribute('class', 'meaning')
+                MEANING_LIST_ITEM.appendChild(document.createTextNode(defObj.definition))
+                // console.log(MEANING_LIST_ITEM)
+
+                NOUN_MEANING_LIST.appendChild(MEANING_LIST_ITEM)
+            })
+            
         })
     e.preventDefault()
 }
 
 function onClickPlayHandler(e) {
-    // Check if context is in suspended state (autoplay policy)
+    // // Check if context is in suspended state (autoplay policy)
     if (audioContext.state === "suspended") {
       audioContext.resume();
     }
@@ -49,8 +59,6 @@ function onEndedAudioHandler(e){
     SEARCHED_WORD_AUDIO.dataset.playing = "false";
 }
   
-
-
 SEARCH_FORM.addEventListener("submit", onSubmitSearchHandler)
 
 SEARCHED_WORD_AUDIO.addEventListener("click", onClickPlayHandler)
