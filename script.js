@@ -21,18 +21,23 @@ function onSubmitSearchHandler(e){
             AUDIO.setAttribute("crossorigin", true)
             const track = audioContext.createMediaElementSource(AUDIO);
             track.connect(audioContext.destination);
-            // console.log(json[0].meanings[0].definitions)
+            console.log(json[0].meanings[0])
             SEARCHED_WORD.innerText = json[0].word
             SEARCHED_WORD_PHONETIC.innerText = json[0].phonetic
             SEARCHED_WORD_AUDIO.appendChild(AUDIO) 
             json[0].meanings[0].definitions.forEach(defObj => {
-                // console.log(defObj.definition)
                 const MEANING_LIST_ITEM = document.createElement('li')
                 MEANING_LIST_ITEM.setAttribute('class', 'meaning')
                 MEANING_LIST_ITEM.appendChild(document.createTextNode(defObj.definition))
-                // console.log(MEANING_LIST_ITEM)
 
                 NOUN_MEANING_LIST.appendChild(MEANING_LIST_ITEM)
+            })
+            json[0].meanings[0].synonyms.forEach(synonym => {
+                const MEANING_LIST_ITEM = document.createElement('li')
+                MEANING_LIST_ITEM.setAttribute('class', 'synonym')
+                MEANING_LIST_ITEM.appendChild(document.createTextNode(synonym))
+
+                SYNONYMS_LIST.appendChild(MEANING_LIST_ITEM)
             })
             
         })
