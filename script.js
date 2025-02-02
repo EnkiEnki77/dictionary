@@ -11,6 +11,7 @@ const NOUN_MEANING_LIST = document.querySelector('.noun')
 const SYNONYMS_LIST = document.querySelector('.synonyms-list')
 const VERB_MEANING_LIST = document.querySelector('.verbs')
 const EXAMPLE_SENTENCE = document.querySelector('.example_sentence')
+const MAIN = document.querySelector('main')
 
 function onSubmitSearchHandler(e){
    
@@ -21,24 +22,81 @@ function onSubmitSearchHandler(e){
             AUDIO.setAttribute("crossorigin", true)
             const track = audioContext.createMediaElementSource(AUDIO);
             track.connect(audioContext.destination);
-            console.log(json[0].meanings[0])
+            // console.log(json[0])
             SEARCHED_WORD.innerText = json[0].word
             SEARCHED_WORD_PHONETIC.innerText = json[0].phonetic
             SEARCHED_WORD_AUDIO.appendChild(AUDIO) 
-            json[0].meanings[0].definitions.forEach(defObj => {
-                const MEANING_LIST_ITEM = document.createElement('li')
-                MEANING_LIST_ITEM.setAttribute('class', 'meaning')
-                MEANING_LIST_ITEM.appendChild(document.createTextNode(defObj.definition))
+            json[0].meanings.forEach(meaning => {
+                console.log(meaning)
+                const DEFINITION_CONT = document.createElement('section')
+                DEFINITION_CONT.setAttribute('class', 'definition-cont')
+                
+                const PART_OF_SPEECH = document.createElement('h2')
+                PART_OF_SPEECH.setAttribute('class', 'part-of-speech')
+                PART_OF_SPEECH.appendChild(document.createTextNode(meaning.partOfSpeech))
+                
+                const MEANING_LIST_TITLE = document.createElement('h3')
+                MEANING_LIST_TITLE.setAttribute('class', 'meaning-list-title')
+                MEANING_LIST_TITLE.appendChild(document.createTextNode("meaning"))
 
-                NOUN_MEANING_LIST.appendChild(MEANING_LIST_ITEM)
-            })
-            json[0].meanings[0].synonyms.forEach(synonym => {
-                const MEANING_LIST_ITEM = document.createElement('li')
-                MEANING_LIST_ITEM.setAttribute('class', 'synonym')
-                MEANING_LIST_ITEM.appendChild(document.createTextNode(synonym))
+                const MEANING_LIST = document.createElement('ul')
+                MEANING_LIST.setAttribute('class', 'meaning-list')
+                MEANING_LIST.append(...json[0].meanings[0].definitions.map(defObj => {
+                    const MEANING_LIST_ITEM = document.createElement('li')
+                    MEANING_LIST_ITEM.setAttribute('class', 'meaning-list-item')
+                    MEANING_LIST_ITEM.appendChild(document.createTextNode(defObj.definition))
 
-                SYNONYMS_LIST.appendChild(MEANING_LIST_ITEM)
+                    if (defObj.example) {
+                        const MEANING_LIST_ITEM_EXAMPLE = document.createElement('p')
+                        MEANING_LIST_ITEM_EXAMPLE.setAttribute('class', 'meaning-list-item-example')
+                        MEANING_LIST_ITEM_EXAMPLE.appendChild(document.createTextNode(defObj.example))
+
+                        MEANING_LIST_ITEM.appendChild(MEANING_LIST_ITEM_EXAMPLE)
+                    }
+                    
+
+                    return MEANING_LIST_ITEM
+                }))
+
+                 DEFINITION_CONT.append(PART_OF_SPEECH, MEANING_LIST_TITLE, MEANING_LIST)
+
+                if (meaning.partOfSpeech == "noun") {
+                    const SYNONYM_LIST_TITLE = document.createElement('h3')
+                    SYNONYM_LIST_TITLE.setAttribute('class', 'synonym-list-title')
+                    SYNONYM_LIST_TITLE.appendChild(document.createTextNode("synonyms"))
+
+                    const SYNONYM_LIST = document.createElement('ul')
+                    SYNONYM_LIST.setAttribute('class', 'synonym-list')
+                    SYNONYM_LIST.append(...json[0].meanings[0].synonyms.map(synonym => {
+                        const MEANING_LIST_ITEM = document.createElement('li')
+                        MEANING_LIST_ITEM.setAttribute('class', 'synonym')
+                        MEANING_LIST_ITEM.appendChild(document.createTextNode(synonym))
+
+                        return MEANING_LIST_ITEM
+                    }))
+
+                     DEFINITION_CONT.append(SYNONYM_LIST_TITLE, SYNONYM_LIST)
+                }
+                
+               
+                MAIN.appendChild(DEFINITION_CONT)
             })
+            
+            // json[0].meanings[0].synonyms.forEach(synonym => {
+            //     const MEANING_LIST_ITEM = document.createElement('li')
+            //     MEANING_LIST_ITEM.setAttribute('class', 'synonym')
+            //     MEANING_LIST_ITEM.appendChild(document.createTextNode(synonym))
+
+            //     SYNONYMS_LIST.appendChild(MEANING_LIST_ITEM)
+            // })
+
+            // json[0].meanings[0].synonyms.forEach(synonym => {
+            //     const MEANING_LIST_ITEM = document.createElement('li')
+            //     MEANING_LIST_ITEM.setAttribute('class', 'synonym')
+            //     MEANING_LIST_ITEM.appendChild(document.createTextNode(synonym))
+
+            //     SYNONYMS_LIST.appendChild(MEANING_LIST_ITEM)
+            // })
             
         })
     e.preventDefault()
