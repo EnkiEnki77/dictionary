@@ -21,12 +21,16 @@ function onToggleHandler(e) {
 
 function onClicFontkHandler(e) {
     console.log(e.target.textContent)
-    
+   
+  
     if (e.target.textContent == 'sans-serif') {
+        document.body.style.font = "var(--body-m-mobile) var(--inter)"
         CURRENT_FONT.innerText = 'sans-serif'
-    } else if(e.target.textContent == 'serif') {
+    } else if (e.target.textContent == 'serif') {
+        document.body.style.font = "var(--body-m-mobile) var(--lora)"
         CURRENT_FONT.innerText = 'serif'
-    }else if(e.target.textContent == 'mono') {
+    } else if (e.target.textContent == 'mono') {
+        document.body.style.font = "var(--body-m-mobile) var(--inconsolata)"
         CURRENT_FONT.innerText = 'mono'
     }
     

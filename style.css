@@ -18,9 +18,12 @@
   --lora: "Lora", serif;
   --inconsolata: "Inconsolata", serif;
   --heading-l: 700 4rem;
+  --heading-l-mobile: 700 2rem;
   --heading-m: 400 1.5rem;
   --heading-s: 400 1.25rem;
+  --heading-s-mobile: 400 1rem;
   --body-m: 400 1.125rem/1.5rem;
+  --body-m-mobile: 400 0.875rem/1.5rem;
   --body-s: 400 0.875rem;
 
   /* Allows body to grow as needed, unrestricted */
@@ -39,12 +42,41 @@
 body {
   margin: 0;
   height: 100%;
-  font: var(--body-m) var(--inter);
+  font: var(--body-m-mobile) var(--inter);
+  color: var(--grey-250);
 }
 
 /* =============
     TYPOGROPHY
 ============== */
+
+.current-font,
+.serif,
+.sans,
+.mono,
+.search-input {
+  font-weight: 700;
+}
+
+.serif {
+  font-family: var(--lora);
+}
+
+.sans {
+  font-family: var(--inter);
+}
+
+.mono {
+  font-family: var(--inconsolata);
+}
+
+.search-input {
+  font: var(--heading-s-mobile);
+}
+
+.searched-word {
+  font: var(--heading-l-mobile);
+}
 
 /* =============
     LAYOUT
