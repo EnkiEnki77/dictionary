@@ -51,6 +51,7 @@ body {
 ============== */
 
 .container {
+  padding: 1.5em;
 }
 
 .container-flex {

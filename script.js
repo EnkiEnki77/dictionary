@@ -10,8 +10,6 @@ const SOURCE_LIST_TITLE = document.querySelector('.source-list-title')
 const SOURCE_LIST = document.querySelector('.source-list')
 const AUDIO = document.createElement("audio")
 
-
-
 function onSubmitSearchHandler(e){
    
     fetch(API_URL + SEARCH_INPUT.value)
