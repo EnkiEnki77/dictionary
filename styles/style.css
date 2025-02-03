@@ -1,3 +1,5 @@
+/* - **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS. */
+
 /* =============
     DEFAULTS
 ============== */
@@ -104,6 +106,7 @@ body {
 .source-list-title {
   font: var(--body-s) var(--current-font);
   color: var(--grey-150);
+  text-decoration: underline;
 }
 
 .source-list li {
@@ -271,12 +274,17 @@ header {
 
 .play-arrow {
   width: 100%;
+  cursor: pointer;
 }
 
 .definition-cont {
   margin-bottom: 0.5625em;
   display: flex;
   flex-direction: column;
+}
+
+.definition-cont:last-of-type {
+  border-bottom: 1px solid var(--grey-100);
 }
 
 .part-of-speech-cont {
@@ -334,13 +342,17 @@ hr {
   gap: 1em;
 }
 
-.synonym {
+.source-list-cont {
+  margin-bottom: 5em;
 }
 
 .source-list-title {
   display: none;
+  margin-bottom: 1em;
 }
 
 .source-list {
   display: none;
+  list-style: none;
+  padding: 0;
 }

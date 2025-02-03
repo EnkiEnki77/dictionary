@@ -7,6 +7,7 @@ const WORD_INFO = document.querySelector('.word-info')
 const SEARCHED_WORD = document.querySelector('.searched-word')
 const SEARCHED_WORD_PHONETIC = document.querySelector('.searched-word-phonetic')
 const SEARCHED_WORD_AUDIO = document.querySelector('.searched-word-audio')
+const SOURCE_LIST_CONT = document.querySelector('.source-list-cont')
 const SOURCE_LIST_TITLE = document.querySelector('.source-list-title')
 const SOURCE_LIST = document.querySelector('.source-list')
 const AUDIO = document.createElement("audio")
@@ -97,14 +98,17 @@ function onSubmitSearchHandler(e){
                      DEFINITION_CONT.append(SYNONYM_LIST)
                 }
             
-                MAIN.insertBefore(DEFINITION_CONT, SOURCE_LIST_TITLE)
+                MAIN.insertBefore(DEFINITION_CONT, SOURCE_LIST_CONT)
             })
             
+            
+            // SOURCE_LIST_CONT.setAttribute('class', 'source-list-cont')
             SOURCE_LIST_TITLE.style.display = 'block'
             SOURCE_LIST.style.display = 'block'
             const SOURCE = document.createElement("li")
             SOURCE.appendChild(document.createTextNode(json[0].sourceUrls[0]))
             SOURCE_LIST.appendChild(SOURCE)
+            // SOURCE_LIST_CONT.append(SOURCE_LIST_TITLE, SOURCE_LIST)
         })
     
     SEARCH_INPUT.value = ''
