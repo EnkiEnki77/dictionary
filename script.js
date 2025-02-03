@@ -33,10 +33,20 @@ function onSubmitSearchHandler(e){
                 // console.log(meaning)
                 const DEFINITION_CONT = document.createElement('section')
                 DEFINITION_CONT.setAttribute('class', 'definition-cont')
-                
+
                 const PART_OF_SPEECH = document.createElement('h2')
                 PART_OF_SPEECH.setAttribute('class', 'part-of-speech')
                 PART_OF_SPEECH.appendChild(document.createTextNode(meaning.partOfSpeech))
+
+                const HR = document.createElement('hr');
+                console.log(HR)
+
+                const PART_OF_SPEECH_CONT = document.createElement('div')
+                PART_OF_SPEECH_CONT.setAttribute('class', 'part-of-speech-cont')
+                PART_OF_SPEECH_CONT.append(PART_OF_SPEECH, HR)
+                
+               
+                // HR.setAttribute('class', 'meaning-hr')
                 
                 const MEANING_LIST_TITLE = document.createElement('h3')
                 MEANING_LIST_TITLE.setAttribute('class', 'meaning-list-title')
@@ -61,7 +71,7 @@ function onSubmitSearchHandler(e){
                     return MEANING_LIST_ITEM
                 }))
 
-                 DEFINITION_CONT.append(PART_OF_SPEECH, MEANING_LIST_TITLE, MEANING_LIST)
+                 DEFINITION_CONT.append(PART_OF_SPEECH_CONT, MEANING_LIST_TITLE, MEANING_LIST)
 
                 if (meaning.partOfSpeech == "noun") {
                     const SYNONYM_LIST_TITLE = document.createElement('h3')
