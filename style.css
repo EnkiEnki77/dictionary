@@ -134,6 +134,11 @@ body {
   gap: 1.5em;
 }
 
+/* li:before {
+  content: "";
+  margin-left: 1em;
+} */
+
 header {
   display: flex;
   align-items: center;
@@ -302,11 +307,6 @@ hr {
   margin-bottom: 1.7142em;
 }
 
-.meaning-list-item::marker {
-  color: var(--brand);
-  margin-right: 1em;
-}
-
 .item-flex {
   display: flex;
   flex-direction: column;
@@ -314,13 +314,24 @@ hr {
 }
 
 .meaning-list-item {
-  /* display: flex; */
+  padding-left: 1em;
+}
+
+.meaning-list-item::marker {
+  color: var(--brand);
 }
 
 .synonym-list-title {
+  margin-right: 1em;
 }
 
 .synonym-list {
+  margin-bottom: 2.2857em;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1em;
 }
 
 .synonym {

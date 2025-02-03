@@ -85,6 +85,7 @@ function onSubmitSearchHandler(e){
 
                     const SYNONYM_LIST = document.createElement('ul')
                     SYNONYM_LIST.setAttribute('class', 'synonym-list')
+                    SYNONYM_LIST.appendChild(SYNONYM_LIST_TITLE)
                     SYNONYM_LIST.append(...json[0].meanings[0].synonyms.map(synonym => {
                         const MEANING_LIST_ITEM = document.createElement('li')
                         MEANING_LIST_ITEM.setAttribute('class', 'synonym')
@@ -93,7 +94,7 @@ function onSubmitSearchHandler(e){
                         return MEANING_LIST_ITEM
                     }))
 
-                     DEFINITION_CONT.append(SYNONYM_LIST_TITLE, SYNONYM_LIST)
+                     DEFINITION_CONT.append(SYNONYM_LIST)
                 }
             
                 MAIN.insertBefore(DEFINITION_CONT, SOURCE_LIST_TITLE)
