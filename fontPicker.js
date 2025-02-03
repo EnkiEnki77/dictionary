@@ -13,7 +13,7 @@ function onToggleHandler(e) {
         FONT_LIST.style.display = "none"
         toggle = false
     } else {
-        FONT_LIST.style.display = "block"
+        FONT_LIST.style.display = "flex"
         toggle= true
     }
     
