@@ -25,7 +25,7 @@ function onSubmitSearchHandler(e){
             const track = audioContext.createMediaElementSource(AUDIO);
             track.connect(audioContext.destination);
             console.log(json[0])
-            WORD_INFO.style.display = 'block'
+            WORD_INFO.style.display = 'flex'
             SEARCHED_WORD.innerText = json[0].word
             SEARCHED_WORD_PHONETIC.innerText = json[0].phonetic
             SEARCHED_WORD_AUDIO.appendChild(AUDIO) 
@@ -90,6 +90,9 @@ function onSubmitSearchHandler(e){
             SOURCE.appendChild(document.createTextNode(json[0].sourceUrls[0]))
             SOURCE_LIST.appendChild(SOURCE)
         })
+    
+    SEARCH_INPUT.value = ''
+
     e.preventDefault()
 }
 
