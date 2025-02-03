@@ -57,14 +57,19 @@ function onSubmitSearchHandler(e){
                 MEANING_LIST.append(...meaning.definitions.map(defObj => {
                     const MEANING_LIST_ITEM = document.createElement('li')
                     MEANING_LIST_ITEM.setAttribute('class', 'meaning-list-item')
-                    MEANING_LIST_ITEM.appendChild(document.createTextNode(defObj.definition))
+                   
 
                     if (defObj.example) {
+                        const ITEM_FLEX = document.createElement('div')
+                        ITEM_FLEX.setAttribute('class', 'item-flex')
                         const MEANING_LIST_ITEM_EXAMPLE = document.createElement('span')
                         MEANING_LIST_ITEM_EXAMPLE.setAttribute('class', 'meaning-list-item-example')
                         MEANING_LIST_ITEM_EXAMPLE.appendChild(document.createTextNode('"' + defObj.example + '"' ))
 
-                        MEANING_LIST_ITEM.appendChild(MEANING_LIST_ITEM_EXAMPLE)
+                        ITEM_FLEX.append(document.createTextNode(defObj.definition), MEANING_LIST_ITEM_EXAMPLE)
+                        MEANING_LIST_ITEM.appendChild(ITEM_FLEX)
+                    } else {
+                         MEANING_LIST_ITEM.appendChild(document.createTextNode(defObj.definition))
                     }
                     
 
