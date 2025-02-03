@@ -21,16 +21,18 @@ function onToggleHandler(e) {
 
 function onClicFontkHandler(e) {
     console.log(e.target.textContent)
+
+    const ROOT = document.querySelector(':root')
    
   
     if (e.target.textContent == 'sans-serif') {
-        document.body.style.font = "var(--body-m-mobile) var(--inter)"
+        ROOT.style.setProperty('--current-font', '"Inter", serif')
         CURRENT_FONT.innerText = 'sans-serif'
     } else if (e.target.textContent == 'serif') {
-        document.body.style.font = "var(--body-m-mobile) var(--lora)"
+        ROOT.style.setProperty('--current-font', '"Lora", serif')
         CURRENT_FONT.innerText = 'serif'
     } else if (e.target.textContent == 'mono') {
-        document.body.style.font = "var(--body-m-mobile) var(--inconsolata)"
+        ROOT.style.setProperty('--current-font', '"Inconsolata", serif')
         CURRENT_FONT.innerText = 'mono'
     }
     

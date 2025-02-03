@@ -3,6 +3,7 @@ const API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/"
 const MAIN = document.querySelector('main')
 const SEARCH_FORM = document.querySelector('form')
 const SEARCH_INPUT = document.querySelector('.search-input')
+const WORD_INFO = document.querySelector('.word-info')
 const SEARCHED_WORD = document.querySelector('.searched-word')
 const SEARCHED_WORD_PHONETIC = document.querySelector('.searched-word-phonetic')
 const SEARCHED_WORD_AUDIO = document.querySelector('.searched-word-audio')
@@ -23,7 +24,8 @@ function onSubmitSearchHandler(e){
             AUDIO.setAttribute("crossorigin", true)
             const track = audioContext.createMediaElementSource(AUDIO);
             track.connect(audioContext.destination);
-            // console.log(json[0])
+            console.log(json[0])
+            WORD_INFO.style.display = 'block'
             SEARCHED_WORD.innerText = json[0].word
             SEARCHED_WORD_PHONETIC.innerText = json[0].phonetic
             SEARCHED_WORD_AUDIO.appendChild(AUDIO) 
@@ -42,7 +44,7 @@ function onSubmitSearchHandler(e){
 
                 const MEANING_LIST = document.createElement('ul')
                 MEANING_LIST.setAttribute('class', 'meaning-list')
-                MEANING_LIST.append(...json[0].meanings[0].definitions.map(defObj => {
+                MEANING_LIST.append(...meaning.definitions.map(defObj => {
                     const MEANING_LIST_ITEM = document.createElement('li')
                     MEANING_LIST_ITEM.setAttribute('class', 'meaning-list-item')
                     MEANING_LIST_ITEM.appendChild(document.createTextNode(defObj.definition))
@@ -50,7 +52,7 @@ function onSubmitSearchHandler(e){
                     if (defObj.example) {
                         const MEANING_LIST_ITEM_EXAMPLE = document.createElement('span')
                         MEANING_LIST_ITEM_EXAMPLE.setAttribute('class', 'meaning-list-item-example')
-                        MEANING_LIST_ITEM_EXAMPLE.appendChild(document.createTextNode(defObj.example))
+                        MEANING_LIST_ITEM_EXAMPLE.appendChild(document.createTextNode('"' + defObj.example + '"' ))
 
                         MEANING_LIST_ITEM.appendChild(MEANING_LIST_ITEM_EXAMPLE)
                     }
@@ -82,6 +84,8 @@ function onSubmitSearchHandler(e){
                 MAIN.insertBefore(DEFINITION_CONT, SOURCE_LIST_TITLE)
             })
             
+            SOURCE_LIST_TITLE.style.display = 'block'
+            SOURCE_LIST.style.display = 'block'
             const SOURCE = document.createElement("li")
             SOURCE.appendChild(document.createTextNode(json[0].sourceUrls[0]))
             SOURCE_LIST.appendChild(SOURCE)

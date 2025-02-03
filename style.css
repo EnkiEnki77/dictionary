@@ -17,9 +17,11 @@
   --inter: "Inter", serif;
   --lora: "Lora", serif;
   --inconsolata: "Inconsolata", serif;
-  --heading-l: 700 4rem;
+  --current-font: "Inter", serif;
+  --heading-l: 700 64px;
   --heading-l-mobile: 700 2rem;
   --heading-m: 400 1.5rem;
+  --heading-m-mobile: 400 1.125rem;
   --heading-s: 400 1.25rem;
   --heading-s-mobile: 400 1rem;
   --body-m: 400 1.125rem/1.5rem;
@@ -42,21 +44,13 @@
 body {
   margin: 0;
   height: 100%;
-  font: var(--body-m-mobile) var(--inter);
+  font: var(--body-m-mobile) var(--current-fontd);
   color: var(--grey-250);
 }
 
 /* =============
     TYPOGROPHY
 ============== */
-
-.current-font,
-.serif,
-.sans,
-.mono,
-.search-input {
-  font-weight: 700;
-}
 
 .serif {
   font-family: var(--lora);
@@ -71,11 +65,46 @@ body {
 }
 
 .search-input {
-  font: var(--heading-s-mobile);
+  font: var(--heading-s-mobile) var(--current-font);
 }
 
 .searched-word {
-  font: var(--heading-l-mobile);
+  font: var(--heading-l-mobile) var(--current-font);
+}
+
+.searched-word-phonetic {
+  font: var(--heading-m-mobile) var(--inter);
+  color: var(--brand);
+}
+
+.part-of-speech {
+  font: var(--heading-m-mobile) var(--current-font);
+}
+
+.meaning-list-title,
+.synonym-list-title {
+  font: var(--heading-s-mobile) var(--current-font);
+  color: var(--grey-150);
+  text-transform: capitalize;
+}
+
+.synonym {
+  font: var(--heading-s-mobile) var(--current-font);
+  color: var(--brand);
+}
+
+.meaning-list-item-example {
+  color: var(--grey-150);
+}
+
+.current-font,
+.serif,
+.sans,
+.mono,
+.search-input,
+.part-of-speech,
+.synonym {
+  font-weight: 700;
 }
 
 /* =============
@@ -89,4 +118,16 @@ body {
 .container-flex {
   display: flex;
   flex-direction: column;
+}
+
+.word-info {
+  display: none;
+}
+
+.source-list-title {
+  display: none;
+}
+
+.source-list {
+  display: none;
 }
