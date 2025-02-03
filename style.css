@@ -211,13 +211,13 @@ header {
 .toggle-container {
   display: flex;
   width: 40px;
-  height: 20px;
-  border-radius: 10px;
+  height: 19px;
+  border-radius: 14px;
   background-color: var(--grey-150);
   padding: 3px;
   cursor: pointer;
   align-items: center;
-  transition: justify-content 250ms, background-color 250ms;
+  transition: background-color 250ms;
 }
 
 .toggle-switch {
@@ -235,4 +235,23 @@ header {
 .toggle-icon {
   width: 20px;
   height: 20px;
+}
+
+.search-form {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--grey-50);
+  padding: 1em 1.5em;
+  border-radius: 16px;
+}
+
+.search-input {
+  border: none;
+  width: 80%;
+  background-color: transparent;
+}
+
+.search-icon {
 }
