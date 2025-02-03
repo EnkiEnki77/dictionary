@@ -131,3 +131,28 @@ body {
 .source-list {
   display: none;
 }
+
+.light-dark-toggle {
+  display: flex;
+  gap: 0.75em;
+}
+
+.toggle-container {
+  display: flex;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--grey-150);
+  padding: 3px;
+  cursor: pointer;
+}
+
+.toggle-switch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.toggle-icon {
+}
